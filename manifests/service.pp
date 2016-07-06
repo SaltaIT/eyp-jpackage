@@ -7,9 +7,10 @@ class jpackage::service inherits jpackage {
 
   validate_re($jpackage::service_ensure, [ '^running$', '^stopped$' ], "Not a valid daemon status: ${jpackage::service_ensure}")
 
-  if(getvar('::eyp_docker_iscontainer')==undef or
-      getvar('::eyp_docker_iscontainer')==false or
-      getvar('::eyp_docker_iscontainer') =~ /false/ or
+  $is_docker_container_var=getvar('::eyp_docker_iscontainer')
+  $is_docker_container=str2bool($is_docker_container_var)
+
+  if( $is_docker_container==false or
       $jpackage::manage_docker_service)
   {
     if($jpackage::manage_service)
