@@ -16,10 +16,10 @@ class jpackage::install inherits jpackage {
   if($jpackage::manage_repo)
   {
     yumrepo { 'jpackage-generic':
-      descr => 'JPackage generic',
-      enabled => bool2number($jpackage::repo_enabled),
-      gpgcheck => bool2number($jpackage::repo_gpgcheck),
-      gpgkey => 'http://www.jpackage.org/jpackage.asc',
+      descr      => 'JPackage generic',
+      enabled    => bool2number($jpackage::repo_enabled),
+      gpgcheck   => bool2number($jpackage::repo_gpgcheck),
+      gpgkey     => 'http://www.jpackage.org/jpackage.asc',
       mirrorlist => "http://www.jpackage.org/mirrorlist.php?dist=generic&type=free&release=${jpackage::version}",
     }
   }
